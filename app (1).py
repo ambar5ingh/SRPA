@@ -460,8 +460,8 @@ with st.sidebar:
     </div>""", unsafe_allow_html=True)
     st.markdown("---")
     page = st.radio("Navigate",[
-        "📊 Overview","🏆 Rankings","🔍 State Profile","⚖️ Compare",
-        "🗺️ Heatmap","📈 Trends","📤 Upload","📝 New Assessment","📋 History",
+        "Overview","Rankings","State Profile","Compare",
+        "Heatmap","Trends","Upload","New Assessment","History",
     ], label_visibility="collapsed")
     st.markdown("---")
     dates    = sorted(data["assessments"].keys(), reverse=True)
@@ -508,7 +508,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ══════════════════════════════════════════════════════════════════════════════
 #  OVERVIEW
 # ══════════════════════════════════════════════════════════════════════════════
-if page == "📊 Overview":
+if page == "Overview":
     sorted_df = df.sort_values("Total", ascending=False)
     col_l, col_r = st.columns(2)
     with col_l:
@@ -570,7 +570,7 @@ if page == "📊 Overview":
 # ══════════════════════════════════════════════════════════════════════════════
 #  RANKINGS
 # ══════════════════════════════════════════════════════════════════════════════
-elif page == "🏆 Rankings":
+elif page == "Rankings":
     fc1,fc2,fc3 = st.columns([3,1,1])
     search       = fc1.text_input("Search", placeholder="Filter by name…", label_visibility="collapsed")
     filter_type  = fc2.selectbox("Type",  ["All","State","UT"],        label_visibility="collapsed")
@@ -589,7 +589,7 @@ elif page == "🏆 Rankings":
 # ══════════════════════════════════════════════════════════════════════════════
 #  STATE PROFILE
 # ══════════════════════════════════════════════════════════════════════════════
-elif page == "🔍 State Profile":
+elif page == "State Profile":
     sel = st.selectbox("Select State / UT", sorted(scores_raw.keys()),
                        format_func=lambda s: f"{s}  ·  Grade {scores_raw[s].get('grade','?')}  ·  {scores_raw[s].get('total',0):.1f}")
     s_data = scores_raw[sel]
@@ -647,7 +647,7 @@ elif page == "🔍 State Profile":
 # ══════════════════════════════════════════════════════════════════════════════
 #  COMPARE
 # ══════════════════════════════════════════════════════════════════════════════
-elif page == "⚖️ Compare":
+elif page == "Compare":
     cs1,cs2 = st.columns(2)
     with cs1:
         st.markdown("<div style='font-size:0.68rem;font-weight:600;color:#185FA5;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px'>State / UT A</div>", unsafe_allow_html=True)
@@ -711,7 +711,7 @@ elif page == "⚖️ Compare":
 # ══════════════════════════════════════════════════════════════════════════════
 #  HEATMAP
 # ══════════════════════════════════════════════════════════════════════════════
-elif page == "🗺️ Heatmap":
+elif page == "Heatmap":
     st.markdown("<div class='section-title'>Parameter Achievement — % of Maximum Marks</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='chart-box' style='overflow-x:auto'>{svg_heatmap(df)}</div>", unsafe_allow_html=True)
     legend_html = "<div style='display:flex;flex-wrap:wrap;gap:16px;margin-top:10px'>"
@@ -726,7 +726,7 @@ elif page == "🗺️ Heatmap":
 # ══════════════════════════════════════════════════════════════════════════════
 #  TRENDS
 # ══════════════════════════════════════════════════════════════════════════════
-elif page == "📈 Trends":
+elif page == "Trends":
     if len(data["assessments"]) < 2:
         st.info("Add at least 2 assessments to see trends.")
     else:
@@ -772,7 +772,7 @@ elif page == "📈 Trends":
 # ══════════════════════════════════════════════════════════════════════════════
 #  UPLOAD
 # ══════════════════════════════════════════════════════════════════════════════
-elif page == "📤 Upload":
+elif page == "Upload":
     st.info("Upload a CSV with columns: State/UT, Resource Adequacy, Financial Viability, Ease of Living, Energy Transition, Regulatory Governance")
     st.download_button("⬇️ Download CSV Template", make_csv_template(), "assessment_template.csv", mime="text/csv")
     st.markdown("---")
@@ -804,7 +804,7 @@ elif page == "📤 Upload":
 # ══════════════════════════════════════════════════════════════════════════════
 #  NEW ASSESSMENT
 # ══════════════════════════════════════════════════════════════════════════════
-elif page == "📝 New Assessment":
+elif page == "New Assessment":
     st.info("Enter updated scores for each State/UT. Totals are auto-computed.")
     with st.form("new_assessment_form"):
         nc1,nc2 = st.columns(2)
@@ -838,7 +838,7 @@ elif page == "📝 New Assessment":
 # ══════════════════════════════════════════════════════════════════════════════
 #  HISTORY
 # ══════════════════════════════════════════════════════════════════════════════
-elif page == "📋 History":
+elif page == "History":
     st.markdown("<div class='section-title'>Assessment History</div>", unsafe_allow_html=True)
     rows_h=[]
     for d_key, snap in sorted(data["assessments"].items(), reverse=True):
