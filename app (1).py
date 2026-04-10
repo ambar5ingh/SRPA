@@ -24,6 +24,14 @@ html,body,[class*="css"]{font-family:sans-serif!important;}
 [data-testid="stSidebar"]{background:linear-gradient(180deg,#0d1b4b 0%,#1a3a7c 60%,#0f5499 100%)!important;}
 [data-testid="stSidebar"] *{color:#fff!important;}
 [data-testid="stSidebar"] hr{border-color:rgba(255,255,255,0.15)!important;}
+[data-testid="stSidebar"] [data-baseweb="select"] span,
+[data-testid="stSidebar"] [data-baseweb="select"] div,
+[data-testid="stSidebar"] [data-baseweb="select"] input,
+[data-testid="stSidebar"] [data-baseweb="popover"] *,
+[data-testid="stSidebar"] [role="listbox"] *,
+[data-testid="stSidebar"] [role="option"] *{color:#1a1a2e!important;}
+[data-testid="stSidebar"] [data-baseweb="select"] > div{
+    background:#fff!important;border-color:rgba(255,255,255,0.3)!important;}
 .page-header{background:linear-gradient(135deg,#0d1b4b 0%,#1a3a7c 55%,#0f5499 100%);
   padding:1.25rem 1.5rem;border-radius:12px;margin-bottom:1rem;}
 .page-header h1{font-size:1.3rem;font-weight:700;color:#fff;margin:0 0 4px 0;}
