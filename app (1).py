@@ -574,8 +574,7 @@ elif page == "🏆 Rankings":
     st.markdown(f"<div class='chart-box'>{svg_hbar(fdf.sort_values('Total',ascending=True))}</div>", unsafe_allow_html=True)
     st.markdown("<br><div class='section-title'>Detailed Table</div>", unsafe_allow_html=True)
     disp = fdf.copy(); disp.insert(0,"Rank",disp.index)
-    st.dataframe(disp.style.background_gradient(subset=["Total"],cmap="RdYlGn",vmin=0,vmax=100),
-                 use_container_width=True, hide_index=True)
+    st.dataframe(disp, use_container_width=True, hide_index=True)
     st.download_button("⬇️ Download CSV", fdf.to_csv(index=False).encode(),
                        "regulatory_rankings.csv", mime="text/csv")
 
@@ -779,8 +778,7 @@ elif page == "📤 Upload":
             prev_rows=[{"State/UT":s,"RA":sc["ra"],"FV":sc["fv"],"EL":sc["el"],
                         "ET":sc["et"],"RG":sc["rg"],"Total":sc["total"],"Grade":sc["grade"]}
                        for s,sc in parsed.items()]
-            st.dataframe(pd.DataFrame(prev_rows).sort_values("Total",ascending=False)
-                         .style.background_gradient(subset=["Total"],cmap="RdYlGn",vmin=0,vmax=100),
+            st.dataframe(pd.DataFrame(prev_rows).sort_values("Total",ascending=False),
                          use_container_width=True, height=280)
             uc1,uc2 = st.columns(2)
             up_date  = uc1.date_input("Assessment Date", value=date.today())
